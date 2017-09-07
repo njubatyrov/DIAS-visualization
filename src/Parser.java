@@ -1,4 +1,8 @@
-
+/**
+ * Parser class for reading JSON files.
+ * 
+ * @author jubatyrn
+ */
 
 import java.io.File;
 

@@ -1,4 +1,8 @@
-
+/**
+ * Node information for a specific node in a specifing epoch;
+ * 
+ * @author jubatyrn
+ */
 
 import java.util.ArrayList;
 
