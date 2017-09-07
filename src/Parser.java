@@ -1,4 +1,4 @@
-package DataParser;
+
 
 import java.io.File;
 
@@ -7,14 +7,16 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class Parser {
 
+    private String filePath;
     private int numOfNodes;
     private int runDuration;
     
     private NodeInfo[][] nodesData;
     
-    Parser () {
-        numOfNodes = 0;
-        runDuration = 0;
+    Parser (String filePath) {
+        this.filePath = filePath;
+        this.numOfNodes = 0;
+        this.runDuration = 0;
         
         processJSONFiles();
     }
@@ -40,7 +42,7 @@ public class Parser {
     
     private void processJSONFiles() {
         
-        File dir = new File("web/");
+        File dir = new File(filePath);
         File[] files = dir.listFiles((d, name) -> name.endsWith(".json"));
         ObjectMapper mapper = new ObjectMapper();
         
@@ -70,7 +72,8 @@ public class Parser {
     public NodeInfo[][] getNodesData() {
         return nodesData;
     }
+    
     public static void main(String[] args) {
-        Parser parse = new Parser();
+        Parser parse = new Parser("web/");
     }
 }
