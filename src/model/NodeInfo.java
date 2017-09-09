@@ -1,3 +1,4 @@
+package model;
 /**
  * Node information for a specific node in a specifing epoch;
  * 

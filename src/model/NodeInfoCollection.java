@@ -1,3 +1,4 @@
+package model;
 /**
  * Representation of a network, collection of NodeInfos.
  * @author jubatyrn
@@ -5,9 +6,11 @@
 import java.util.LinkedList;
 import java.util.List;
 
+import dataProcessing.Parser;
+
 public class NodeInfoCollection {
     
-    //TODO: at the end, remove initial filePath name
+    //TODO: at the end remove initial filePath name
     private String filePath = "web/";
     private int numOfNodes;
     private int runDuration;

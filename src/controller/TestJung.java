@@ -1,3 +1,4 @@
+package controller;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -22,6 +23,8 @@ import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
 import edu.uci.ics.jung.visualization.BasicVisualizationServer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
+import model.NodeInfoCollection;
+import model.Pair;
 
 public class TestJung extends JFrame {
     
@@ -136,7 +139,7 @@ public class TestJung extends JFrame {
     
     private void updateGraph(int epoch) {
         removeEdges();
-        List < Pair > list =  collection.getPullEdgesForEpoch(epoch);
+        List < Pair > list =  collection.getPushEdgesForEpoch(epoch);
         
         for(Pair entry: list) {
             addEdge(entry.getFirst(), entry.getSecond());

@@ -1,3 +1,4 @@
+package dataProcessing;
 /**
  * Parser class for reading JSON files.
  * 
@@ -9,6 +10,8 @@ import java.io.File;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import model.NodeInfo;
+
 public class Parser {
 
     private String filePath;
@@ -17,7 +20,7 @@ public class Parser {
     
     private NodeInfo[][] nodesData;
     
-    Parser (String filePath) {
+    public Parser (String filePath) {
         this.filePath = filePath;
         this.numOfNodes = 0;
         this.runDuration = 0;
