@@ -4,9 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Paint;
-import java.awt.Shape;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
 import java.io.FileNotFoundException;
 import java.util.List;
 
@@ -19,7 +16,7 @@ import javax.swing.event.ChangeListener;
 
 import org.apache.commons.collections15.Transformer;
 
-import edu.uci.ics.jung.algorithms.layout.FRLayout;
+import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.algorithms.layout.KKLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.Graph;
@@ -142,12 +139,12 @@ public class TestJung extends JFrame {
     
     private void updateGraph(int epoch) {
         removeEdges();
-        List < Pair > list =  collection.getPushEdgesForEpoch(epoch);
+        List < Pair > list =  collection.getPSSEdgesForEpoch(epoch);
         
         for(Pair entry: list) {
             addEdge(entry.getFirst(), entry.getSecond());
         }
-        vv.setGraphLayout(new FRLayout(g));
+        vv.setGraphLayout(new CircleLayout(g));
         vv.repaint();
 //        vv.setGraphLayout(new KKLayout(g));;
     }
