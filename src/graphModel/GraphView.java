@@ -1,5 +1,7 @@
 package graphModel;
 
+import java.util.List;
+
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.layout.KKLayout;
@@ -18,7 +20,8 @@ public class GraphView {
     private Layout<Node, Edge> layout;
     private BasicVisualizationServer<Node, Edge> view;
     private NodeInfoCollection collection;
-
+    
+    private List <Edge> edgeList;
     
     public GraphView(String layoutName, NodeInfoCollection collection) {
         this.layoutName = layoutName;
