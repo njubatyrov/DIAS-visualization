@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Paint;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
 import java.io.FileNotFoundException;
 import java.util.List;
 
@@ -64,8 +67,8 @@ public class TestJung extends JFrame {
             return Color.GREEN;
             }
             }; 
-         vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
-            
+        
+        vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
         initSliderPanel();
         this.setVisible(true);
     }
