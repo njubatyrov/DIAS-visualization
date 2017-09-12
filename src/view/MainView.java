@@ -43,19 +43,6 @@ public class MainView {
         });
         frame.getContentPane().add(slider, "cell 0 0 3 1,grow");
         
-        JList list = new JList();
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setModel(new AbstractListModel() {
-            String[] values = new String[] {"Circle Layout", "FR Layout", "KK Layout", "Spring Layout"};
-            public int getSize() {
-                return values.length;
-            }
-            public Object getElementAt(int index) {
-                return values[index];
-            }
-        });
-        frame.getContentPane().add(list, "cell 0 1,alignx left");
-        
         JPanel panel = new JPanel();
         panel.add(gView.getView());
         frame.getContentPane().add(panel, "cell 1 1");
