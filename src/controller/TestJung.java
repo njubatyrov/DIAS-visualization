@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Paint;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 import java.io.FileNotFoundException;
 import java.util.List;
 
@@ -17,7 +19,7 @@ import javax.swing.event.ChangeListener;
 import org.apache.commons.collections15.Transformer;
 
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
-import edu.uci.ics.jung.algorithms.layout.KKLayout;
+import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
@@ -54,7 +56,7 @@ public class TestJung extends JFrame {
         g = new SparseMultigraph<Integer, String>();
         initGraph();
         
-        layout = new KKLayout(g);
+        layout = new FRLayout(g);
 //        layout.setSize(new Dimension(300,300)); 
         vv = new BasicVisualizationServer<Integer,String>(layout);
 //        vv.setPreferredSize(new Dimension(350,350)); 
@@ -64,8 +66,15 @@ public class TestJung extends JFrame {
             return Color.GREEN;
             }
             }; 
-        
+        Transformer<Integer,Shape> vertexSize = new Transformer<Integer,Shape>(){
+            public Shape transform(Integer i){
+                Ellipse2D circle = new Ellipse2D.Double(-7.5, -7.5, 15, 15);
+                // in this case, the vertex is twice as large
+                return circle;
+            }
+        };
         vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
+        vv.getRenderContext().setVertexShapeTransformer(vertexSize);
         initSliderPanel();
         this.setVisible(true);
     }
@@ -139,7 +148,7 @@ public class TestJung extends JFrame {
     
     private void updateGraph(int epoch) {
         removeEdges();
-        List < Pair > list =  collection.getPSSEdgesForEpoch(epoch);
+        List < Pair > list =  collection.getPushEdgesForEpoch(epoch);
         
         for(Pair entry: list) {
             addEdge(entry.getFirst(), entry.getSecond());
