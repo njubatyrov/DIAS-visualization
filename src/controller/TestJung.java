@@ -32,9 +32,6 @@ public class TestJung extends JFrame {
     
     private JPanel sliderPanel;
     private JSlider slider;
-
-    private JLabel epochLabel;
-    private JLabel pushMessagesLabel;
     boolean [][] was = new boolean[111][111];
     
     private Renderer mRenderer;
@@ -49,7 +46,7 @@ public class TestJung extends JFrame {
         
         this.setBounds(0, 0, 600, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new BorderLayout());
+        getContentPane().setLayout(new BorderLayout());
         
         collection = new NodeInfoCollection("web/");
         
@@ -81,7 +78,7 @@ public class TestJung extends JFrame {
    
     private void initSliderPanel() throws FileNotFoundException {
         sliderPanel = new JPanel();
-        sliderPanel.setLayout(new GridLayout(3, 1));
+        sliderPanel.setLayout(new GridLayout(3, 3));
        
         slider = new JSlider();
         slider.setMinimum(0);
@@ -94,21 +91,13 @@ public class TestJung extends JFrame {
         sliderPanel.add(slider);
         sliderPanel.setBackground(Color.WHITE);
         
-        epochLabel = new JLabel("Epoch: ", JLabel.CENTER);
-        
-        pushMessagesLabel = new JLabel("Push messages: ", JLabel.CENTER);
-        
-        sliderPanel.add(epochLabel);
-        sliderPanel.add(pushMessagesLabel);
-        
-        
        
-        this.add(sliderPanel, BorderLayout.NORTH);
-        this.add((Component) vv, BorderLayout.CENTER);
+        getContentPane().add(sliderPanel, BorderLayout.NORTH);
+        getContentPane().add((Component) vv, BorderLayout.CENTER);
        
         slider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                epochLabel.setText("Epoch:" + ((JSlider)e.getSource()).getValue());
+               
                 updateGraph((int)((JSlider)e.getSource()).getValue());
             }
         });

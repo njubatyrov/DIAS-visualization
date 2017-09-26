@@ -2,13 +2,13 @@ package graphModel;
 
 public class Node {
     
-    private int id;
+    private String id;
     
-    public Node(int id) {
+    public Node(String id) {
         this.id = id;
     }
     
     public String toString() {
-        return "V" + id;
+        return id;
     }
 }

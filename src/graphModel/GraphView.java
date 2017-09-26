@@ -61,20 +61,25 @@ public class GraphView {
         
         addPushMessages(epoch);
     }
+    void addEdge(int from, int to) {
+        Edge edge = new Edge(from + "$" + to);
+        //
+    }
     void addPushMessages(int epoch) {
         List < Pair > list =  collection.getPushEdgesForEpoch(epoch);
         
-        for(Pair entry: list) {
-            addEdge(entry.getFirst(), entry.getSecond());
-        }
+//        for(Pair entry: list) {
+//            addEdge(entry.getFirst(), entry.getSecond());
+//            
+//        }
     }
     private void removeAllEdges() {
         
     }
     private void initGraphNodes() {
         for(int i = 0; i <= collection.getNumOfNodes(); i++) {
-            Node node = new Node(i);
-            g.addVertex(node);
+           // Node node = new Node(i);
+           // g.addVertex(node);
         }
     }
     

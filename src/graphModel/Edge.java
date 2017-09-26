@@ -12,6 +12,6 @@ public class Edge {
         return id;
     }
     public String toString() {
-        return "E" + id;
+        return id;
     }
 }
