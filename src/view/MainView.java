@@ -1,11 +1,10 @@
 package view;
 
-import java.awt.Font;
-
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -23,23 +22,23 @@ public class MainView {
     private JRadioButton pushRadioButton;
     private JRadioButton pullRadioButton;
     private JRadioButton pssRadioButton;
-    private JLabel messagesLabel;
+    private JList layoutsList;
+    
+    private final String[] layoutNames = {"Circle Layout", "KK Layout", "FR Layout", "Spring Layout"};
     
     public MainView() {
         frame = new JFrame("DIAS Visualization");
         frame.setBounds(0, 0, 800, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(new MigLayout("fill"));
+        frame.getContentPane().setLayout(new MigLayout("fill", "[][][]", "[][][][]"));
         
         collection = new NodeInfoCollection("web/");
-        gView = new GraphView("CircleLayout", collection);
+        gView = new GraphView("CircleLayout", collection, this);
         
         pushRadioButton = new JRadioButton("Push");
         pullRadioButton = new JRadioButton("Pull");
         pssRadioButton = new JRadioButton("Pss");
         
-        messagesLabel = new JLabel("Messages", JLabel.CENTER);
-        messagesLabel.setFont(new Font("Serif", Font.PLAIN, 20));
         slider = new JSlider();
         slider.setMinimum(0);
         slider.setMaximum(collection.getRunDuration());
@@ -53,18 +52,46 @@ public class MainView {
             }
         });
         
-        frame.getContentPane().add(slider, "span, grow, wrap");
-        frame.getContentPane().add(messagesLabel, "span, grow, wrap");
-        frame.getContentPane().add(pushRadioButton);
-        frame.getContentPane().add(pullRadioButton);
-        frame.getContentPane().add(pssRadioButton, "wrap");
-        frame.getContentPane().add(gView.getView(), "grow, push, span");
+        layoutsList = new JList(layoutNames);
+        layoutsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
-       frame.setVisible(true);
+        frame.getContentPane().add(slider, "cell 0 0 3 1,grow");
+        frame.getContentPane().add(layoutsList, "cell 1 1, span 1 3, wmax 100, hmax 100");
+        frame.getContentPane().add(pushRadioButton, "cell 0 1, wmax 100, hmax 30");
+        frame.getContentPane().add(pullRadioButton, "cell 0 2, wmax 100, hmax 30");
+        frame.getContentPane().add(pssRadioButton, "cell 0 3, wmax 100, hmax 30");
+        frame.getContentPane().add(gView.getView(), "cell 0 4, grow, span, push");
+        
+        frame.setVisible(true);
     }    
     
+    public JRadioButton getPushRadioButton() {
+        return pushRadioButton;
+    }
+
+    public void setPushRadioButton(JRadioButton pushRadioButton) {
+        this.pushRadioButton = pushRadioButton;
+    }
+
+    public JRadioButton getPullRadioButton() {
+        return pullRadioButton;
+    }
+
+    public void setPullRadioButton(JRadioButton pullRadioButton) {
+        this.pullRadioButton = pullRadioButton;
+    }
+
+    public JRadioButton getPssRadioButton() {
+        return pssRadioButton;
+    }
+
+    public void setPssRadioButton(JRadioButton pssRadioButton) {
+        this.pssRadioButton = pssRadioButton;
+    }
     public static void main(String[] args) {
         MainView view = new MainView();
         
     }
+    
+    
 }
