@@ -1,4 +1,5 @@
 package model;
+import java.util.ArrayList;
 /**
  * Representation of a network, collection of NodeInfos.
  * @author jubatyrn
@@ -89,6 +90,23 @@ public class NodeInfoCollection {
         return list;
     }
     
+    public ArrayList<String> getInfoForEpochAndNode(int epoch, int node) {
+        ArrayList<String> info = new ArrayList<>();
+        info.add("Epoch: " + epoch + ", Node: " + node);
+        info.add("Sum: " + data[epoch][node].getSum());
+        info.add("Avg: " + data[epoch][node].getAvg());
+        info.add("Stdev: " + data[epoch][node].getStdev());
+        info.add("State: " + data[epoch][node].getState());
+        return info;
+    }
+    public float getErrorForEpochandNode(int epoch, int node) {
+        float trueSum = (float)0.0;
+        
+        for (int i = 0; i <= numOfNodes; i++) {
+            trueSum += (float)data[epoch][i].getState();
+        }
+        return Math.abs((float)data[epoch][node].getSum() - trueSum) / trueSum;
+    }
     public int getRunDuration() {
         return runDuration;
     }
